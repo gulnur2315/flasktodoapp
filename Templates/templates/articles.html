@@ -1,0 +1,64 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<hr>
+<div class="row">
+  <div class="col-md-10 offset-md-3">
+    <div class="col-lg-8">
+      <h3>Makaleler</h3>
+      <hr>
+    </div>
+  </div>
+</div>
+
+<!-- Arama Formu -->
+<div class="row">
+  <div class="col-md-10 offset-md-3">
+    <div class="col-lg-8">
+      <form>
+        {% csrf_token %}
+
+        <div class="input-group mb-3">
+          <input type="text" name="keyword" class="form-control" placeholder="Anahtar kelime...">
+          <button type="submit" class="btn btn-danger">Ara</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Makale Listesi -->
+{% if articles %}
+  {% for article in articles %}
+    <div class="row">
+      <div class="col-md-10 offset-md-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h4 class="card-title">{{ article.title }}</h4>
+            <p class="lead">
+              {{ article.content|striptags|truncatewords:50 }}
+            </p>
+            <a style="float:right" href="/articles/article/{{ article.id }}" class="btn btn-danger">Devamını Oku</a>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+<div class="row">
+     <div class="col-md-10 offset-md-3">
+         <div class="col-lg-8">
+<button type="submit" class="alert alert-danger">Makale Bulunamadı</button>
+ 
+  </div>
+ </div>
+ </div> 
+</div>
+  
+      
+{% endif %}
+
+{% endblock %}
+

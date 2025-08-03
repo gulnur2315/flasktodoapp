@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3>Kayıt Ol</h3>
+
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Kayıt Ol</button>
+</form>
+{% endblock %}

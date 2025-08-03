@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Post content-->
+        <article>
+            <!-- Post header-->
+            <header class="mb-4">
+                <!-- Post title-->
+                <h1 class="fw-bolder mb-1">{{ article.title }}</h1>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2">
+                    {{ article.created_date|date:"d F Y H:i" }} tarihinde
+                    {{ article.author.username }} tarafından yayınlandı
+                </div>
+                <!-- Post categories: örnek statik -->
+                <a class="badge bg-secondary text-decoration-none link-light" href="#">Kategori</a>
+            </header>
+
+            <!-- Preview image figure-->
+            {% if article.image %}
+            <figure class="mb-4">
+                <img class="img-fluid rounded" src="{{ article.image.url }}" alt="Makale Görseli" />
+            </figure>
+            {% endif %}
+
+            <!-- Post content-->
+            <section class="mb-5">
+                <p class="fs-5 mb-4">{{ article.content|linebreaks }}</p>
+            </section>
+        </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <!-- Search widget-->
+        <div class="card mb-4">
+            <div class="card-header">Arama</div>
+            <div class="card-body">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Kelime ara..." />
+                    <button class="btn btn-primary" type="button">Git</button>
+                </div>
+            </div>
+        </div>
+        <!-- Categories widget-->
+        <div class="card mb-4">
+            <div class="card-header">Kategoriler</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">CSS</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="#">JavaScript</a></li>
+                            <li><a href="#">Django</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

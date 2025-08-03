@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <!-- Başlık -->
+        <h2 class="card-title">{{ article.title }}</h2>
+
+        <!-- Yazar ve Tarih -->
+        <p class="text-muted">
+          <strong>Yazar:</strong> {{ article.author.username }} |
+          <strong>Yayın Tarihi:</strong> {{ article.created_date|date:"d M Y H:i" }}
+        </p>
+
+        <!-- Görsel -->
+        {% if article.image %}
+          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid rounded mb-3" style="max-height: 500px; object-fit: contain;">
+        {% endif %}
+
+        <!-- İçerik -->
+        <div class="mt-3 p-3 border rounded" style="background-color: #f8f9fa;">
+          {{ article.content|safe }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Geri Dön Butonu -->
+    <a href="{% url 'articles:articles' %}" class="btn btn-secondary">← Tüm Makalelere Dön</a>
+  </div>
+</div>
+{% endblock %}
+
